@@ -13,15 +13,15 @@ def ITCC(p, k, l, n_iters, convergeThresh, cX, cY):
 
     kl_curr = 0.0
     kl_prev = 0.0
-    #num_iters = 0
+    
 
     
     q = calc_q(p, range(0,m), cX, range(0,n), cY)
     kl_curr = kl_divergence(p.ravel(), q.ravel())
     Error=[kl_curr] 
 
-    for i in range(1,n_iters):
-    
+    for i in range(0,n_iters):
+        
         kl_prev = kl_curr
     # Update cX, q
         cX = np.matrix (next_cX(p,q, cX, k) )
@@ -34,6 +34,8 @@ def ITCC(p, k, l, n_iters, convergeThresh, cX, cY):
         kl_curr = kl_divergence(p.ravel(), q.ravel())
         Error.append(kl_curr)
     
+        
+        #print(1)
         if (kl_prev - kl_curr) < convergeThresh:
             converged = True
             break
