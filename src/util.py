@@ -48,29 +48,41 @@ def prob_X_given_yhat(p, yhat,cY):
 
 
                   
-
-def kl_divergence(p,q):
-    TOLERANCE = 0.00000000000000000001
-    p = np.asmatrix(p, dtype=np.float)
-    q = np.asmatrix(q, dtype=np.float)
+#def kl_divergence(p,q):
+    #p = np.asmatrix(p, dtype=np.float)
+    #q = np.asmatrix(q, dtype=np.float)
+    #S=0
+    #m = np.shape(p)[0]
+    #n = np.shape(p)[1]
+    #for i in range(0,m):
+         #for j in range(0,n):
+             #kl=p[i,j]*np.log2(p[i,j]) / (q[i,j])
+             #S=S+ kl       
+    #return S
     
     #import scipy.stats.distributions
     #sum(scipy.stats.entropy(p,q))
     #return np.sum(np.where(p != 0, p * np.log2(p / q), 0))
+
+
+
+def kl_divergence(p,q):
+    TOLERANCE = 0.00000000000000000001
+    #Big=1000000
+    p = np.asmatrix(p, dtype=np.float)
+    q = np.asmatrix(q, dtype=np.float)
     S=0
     m = np.shape(p)[0]
     n = np.shape(p)[1]
     for i in range(0,m):
          for j in range(0,n):
-             kl=(p[i,j]+TOLERANCE) / (q[i,j]+TOLERANCE)
-             if (kl)>0 :  #*q[i,j]
+             kl=(p[i,j]+TOLERANCE) / (q[i,j]+TOLERANCE)  #+TOLERANCE
+             #if (kl)>0 :  #*q[i,j]
+             S=S+ (p[i,j]*np.log2(kl))
+             #if q[i,j]<TOLERANCE:
                 #print(p[i,j])
                 #print(q[i,j])
-                #print(S)
-                #print("salam")
-                S=S+ kl
-                #if ((p[i,j]+TOLERANCE) / (q[i,j]+TOLERANCE) )<0: print(q[i,j])
-                
+                #print("salam")          
     return S
 
     

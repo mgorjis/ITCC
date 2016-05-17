@@ -21,7 +21,7 @@ def ITCC(p, k, l, n_iters, convergeThresh, cX, cY):
     Error=[kl_curr] 
 
     for i in range(0,n_iters):
-        
+        print("iteration:    ", i, "Error:    ",kl_curr)   
         kl_prev = kl_curr
     # Update cX, q
         cX = np.matrix (next_cX(p,q, cX, k) )
@@ -36,7 +36,7 @@ def ITCC(p, k, l, n_iters, convergeThresh, cX, cY):
     
         
         #print(1)
-        if (kl_prev - kl_curr) < convergeThresh:
+        if abs(kl_prev - kl_curr) < convergeThresh: #& ((kl_prev - kl_curr) >0 ):
             converged = True
             break
             
